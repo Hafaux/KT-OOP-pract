@@ -1,6 +1,7 @@
 #include <iostream>
 #include "employee.hpp"
 #include "homeOffice.hpp"
+#include "date.hpp"
 
 void testEmployee() {
     Employee e1;
@@ -48,8 +49,20 @@ void testHomeOffice() {
     newFirst.print();
 }
 
+void testDate() {
+    Date today(3, 19, 2020);
+    today.printDatenl();
+
+    today.setDay(4);
+    today.printDatenl();
+
+    Date defaultDate;
+    defaultDate.printDate();
+}
+
 int main() {
     //testEmployee();
     testHomeOffice();
+    //testDate();
     return 0;
 }
