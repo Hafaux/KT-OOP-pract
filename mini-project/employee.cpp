@@ -2,9 +2,9 @@
 #include <cstring>
 #include "employee.hpp"
 
-Employee::Employee(char const * _firstName, 
-                   char const * _lastName,
-                   char const * _position) {
+Employee::Employee(char const *_firstName, 
+                   char const *_lastName,
+                   char const *_position) {
     firstName = nullptr;
     lastName = nullptr;
     position = nullptr;
@@ -35,10 +35,10 @@ void Employee::setName(char const *first, char const *last) {
     setLastName(last);
 }
 
-void Employee::setPosition(char const *pos) {
+void Employee::setPosition(char const *_position) {
     delete[] position;
-    position = new char[strlen(pos) + 1];
-    strcpy(position, pos);
+    position = new char[strlen(_position) + 1];
+    strcpy(position, _position);
 }
 
 void Employee::print() const {
@@ -46,14 +46,16 @@ void Employee::print() const {
               << getPosition() << std::endl;
 }
 
-// print() becomes redundant but I'm leaving it
-std::ostream & operator<<(std::ostream & out, Employee const & e) {
-    out << e.getFirstName() << " " << e.getLastName() << ": " << e.getPosition();
+// I get "error: 'ostream' in namespace 'std' does not name a type
+//        friend std::ostream & operator<<(std::ostream &, Employee const &);""
+// It worked fine before I added homeOffice.cpp :/
 
-    return out;
-}
+// std::ostream & operator<<(std::ostream &out, Employee const &e) {
+//     out << e.getFirstName() << " " << e.getLastName() << ": " << e.getPosition();
+//     return out;
+// }
 
-Employee & Employee::operator=(Employee const & e) {
+Employee & Employee::operator=(Employee const &e) {
     firstName = e.firstName;
     lastName = e.lastName;
     position = e.position;
