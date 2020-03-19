@@ -64,4 +64,5 @@ Employee & Employee::operator=(Employee const & e) {
 Employee::~Employee() {
     delete[] firstName;
     delete[] lastName;
+    delete[] position;
 }
